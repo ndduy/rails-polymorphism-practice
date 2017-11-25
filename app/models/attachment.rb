@@ -1,4 +1,4 @@
 class Attachment < ApplicationRecord
-  belongs_to :assetable, :polymorphic => true
+  belongs_to :attachable, :polymorphic => true
   delegate :url, :to => :attachment
 end
