@@ -30,6 +30,14 @@ u.attachment = File.open('/Users/zuri/Downloads/Attachments.png')
 u.save!
 ```
 
+Folder structure of the saved file in this case is:
+
+```
+[paperclip] saving /users/attachments/000/000/003/original/Attachments.png
+[paperclip] saving /users/attachments/000/000/003/small/Attachments.png
+[paperclip] saving /users/attachments/000/000/003/large/Attachments.png
+```
+
 To test out Image Attachment Upload: Get into Rails Console
 
 ```
@@ -41,4 +49,12 @@ u.user_verification_document.build_nric_front
 u.user_verification_document.nric_front.id = 99
 u.user_verification_document.nric_front.attachment = File.open('/Users/zuri/Downloads/Attachments.png')
 u.save!
+```
+
+Folder structure of the saved file in this case is:
+
+```
+[paperclip] saving /image_attachments/attachments/000/000/099/original/Attachments.png
+[paperclip] saving /image_attachments/attachments/000/000/099/small/Attachments.png
+[paperclip] saving /image_attachments/attachments/000/000/099/large/Attachments.png
 ```
