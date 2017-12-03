@@ -1,24 +1,44 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The current implementation of the Attachment, Image Attachment, Document
+Attachment polymorph as well as their Attachable Models and Documentable Models
+is following the diagram below:
+https://drive.google.com/a/xfers.com/file/d/1YueXVmPNM6-gHYnjPvgoI2ok6khTuEZE/view?usp=sharing
 
-Things you may want to cover:
+The actual attachment of the file to the Attachment model is done via Paperclip
+Gem
 
-* Ruby version
+gem "paperclip", "~> 5.0.0"
 
-* System dependencies
+Further documentation on the usage can be find here:
+https://github.com/thoughtbot/paperclip
 
-* Configuration
+=====
 
-* Database creation
+This repository also serve as the POC for testing out Paperclip folder structure
+upon uploading to S3.
 
-* Database initialization
+The implementation of the User Attachment mimics the current implementation of
+Attachment of the Production Environment whereas the Image Attachment will
+represent the refactor of the same logic.
 
-* How to run the test suite
+To test out User Attachment Upload: Get into Rails Console
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+u = User.new
+u.attachment = File.open('/Users/zuri/Downloads/Attachments.png')
+u.save!
+```
 
-* Deployment instructions
+To test out Image Attachment Upload: Get into Rails Console
 
-* ...
+```
+u = User.new
+u.id = 1
+u.build_user_verification_document
+u.user_verification_document.id = 10
+u.user_verification_document.build_nric_front
+u.user_verification_document.nric_front.id = 99
+u.user_verification_document.nric_front.attachment = File.open('/Users/zuri/Downloads/Attachments.png')
+u.save!
+```
